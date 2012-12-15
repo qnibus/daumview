@@ -69,8 +69,6 @@ DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레�
 
 = 1.2 =
 * php버전에 따른 플러그인 활성화 방지 추가
-* DaumView 권고사항에 맞게 내부 코드 수정
-* category.xml 파일 추가
-* 송고시 문자열 인코딩 방식 변경
+* DaumView 권고사항에 맞게 내부 코드 수정 및 category.xml 파일 추가
 
 == Upgrade Notice ==
