@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="euc-kr"?>
+<result xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:noNamespaceSchemaLocation="http://api.v.daum.net/open/category_1.0.xsd">
+<head>
+    <code>200</code>
+    <message><![CDATA[처리 완료]]></message>
+</head>
+<entity>
+	
+				        <category depth="1">
+		<category_name><![CDATA[life]]></category_name>
+		<name><![CDATA[라이프]]></name>
+		<list>
+								<category depth="2">
+				<id>01001</id>
+				<category_name><![CDATA[lifestory]]></category_name>
+				<name><![CDATA[일상다반사]]></name>
+				<url>http://v.daum.net/ch/lifestory</url>
+				<trackback_url>http://v.daum.net/tb/ch/lifestory</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01002</id>
+				<category_name><![CDATA[hobby]]></category_name>
+				<name><![CDATA[취미]]></name>
+				<url>http://v.daum.net/ch/hobby</url>
+				<trackback_url>http://v.daum.net/tb/ch/hobby</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01003</id>
+				<category_name><![CDATA[recipe]]></category_name>
+				<name><![CDATA[요리]]></name>
+				<url>http://v.daum.net/ch/recipe</url>
+				<trackback_url>http://v.daum.net/tb/ch/recipe</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01004</id>
+				<category_name><![CDATA[restaurant]]></category_name>
+				<name><![CDATA[맛집]]></name>
+				<url>http://v.daum.net/ch/restaurant</url>
+				<trackback_url>http://v.daum.net/tb/ch/restaurant</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01005</id>
+				<category_name><![CDATA[travel]]></category_name>
+				<name><![CDATA[여행]]></name>
+				<url>http://v.daum.net/ch/travel</url>
+				<trackback_url>http://v.daum.net/tb/ch/travel</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01006</id>
+				<category_name><![CDATA[love]]></category_name>
+				<name><![CDATA[연애]]></name>
+				<url>http://v.daum.net/ch/love</url>
+				<trackback_url>http://v.daum.net/tb/ch/love</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01007</id>
+				<category_name><![CDATA[fashion]]></category_name>
+				<name><![CDATA[패션뷰티]]></name>
+				<url>http://v.daum.net/ch/fashion</url>
+				<trackback_url>http://v.daum.net/tb/ch/fashion</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01008</id>
+				<category_name><![CDATA[health]]></category_name>
+				<name><![CDATA[건강]]></name>
+				<url>http://v.daum.net/ch/health</url>
+				<trackback_url>http://v.daum.net/tb/ch/health</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01009</id>
+				<category_name><![CDATA[childcare]]></category_name>
+				<name><![CDATA[육아]]></name>
+				<url>http://v.daum.net/ch/childcare</url>
+				<trackback_url>http://v.daum.net/tb/ch/childcare</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01010</id>
+				<category_name><![CDATA[pet]]></category_name>
+				<name><![CDATA[반려동물]]></name>
+				<url>http://v.daum.net/ch/pet</url>
+				<trackback_url>http://v.daum.net/tb/ch/pet</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01011</id>
+				<category_name><![CDATA[army]]></category_name>
+				<name><![CDATA[군대]]></name>
+				<url>http://v.daum.net/ch/army</url>
+				<trackback_url>http://v.daum.net/tb/ch/army</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01012</id>
+				<category_name><![CDATA[global]]></category_name>
+				<name><![CDATA[해외생활]]></name>
+				<url>http://v.daum.net/ch/global</url>
+				<trackback_url>http://v.daum.net/tb/ch/global</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01013</id>
+				<category_name><![CDATA[humor]]></category_name>
+				<name><![CDATA[재미]]></name>
+				<url>http://v.daum.net/ch/humor</url>
+				<trackback_url>http://v.daum.net/tb/ch/humor</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>01014</id>
+				<category_name><![CDATA[diy]]></category_name>
+				<name><![CDATA[DIY]]></name>
+				<url>http://v.daum.net/ch/diy</url>
+				<trackback_url>http://v.daum.net/tb/ch/diy</trackback_url>
+			</category>
+				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    		</list>
+    </category>
+        <category depth="1">
+		<category_name><![CDATA[art]]></category_name>
+		<name><![CDATA[문화연예]]></name>
+		<list>
+						    				    				    				    				    				    				    				    				    				    				    				    				    				    						<category depth="2">
+				<id>02001</id>
+				<category_name><![CDATA[tv]]></category_name>
+				<name><![CDATA[TV]]></name>
+				<url>http://v.daum.net/ch/tv</url>
+				<trackback_url>http://v.daum.net/tb/ch/tv</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02002</id>
+				<category_name><![CDATA[star]]></category_name>
+				<name><![CDATA[스타]]></name>
+				<url>http://v.daum.net/ch/star</url>
+				<trackback_url>http://v.daum.net/tb/ch/star</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02003</id>
+				<category_name><![CDATA[movie]]></category_name>
+				<name><![CDATA[영화]]></name>
+				<url>http://v.daum.net/ch/movie</url>
+				<trackback_url>http://v.daum.net/tb/ch/movie</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02004</id>
+				<category_name><![CDATA[music]]></category_name>
+				<name><![CDATA[음악]]></name>
+				<url>http://v.daum.net/ch/music</url>
+				<trackback_url>http://v.daum.net/tb/ch/music</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02005</id>
+				<category_name><![CDATA[book]]></category_name>
+				<name><![CDATA[책]]></name>
+				<url>http://v.daum.net/ch/book</url>
+				<trackback_url>http://v.daum.net/tb/ch/book</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02006</id>
+				<category_name><![CDATA[ani]]></category_name>
+				<name><![CDATA[만화]]></name>
+				<url>http://v.daum.net/ch/ani</url>
+				<trackback_url>http://v.daum.net/tb/ch/ani</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02007</id>
+				<category_name><![CDATA[theater]]></category_name>
+				<name><![CDATA[공연전시]]></name>
+				<url>http://v.daum.net/ch/theater</url>
+				<trackback_url>http://v.daum.net/tb/ch/theater</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02008</id>
+				<category_name><![CDATA[series]]></category_name>
+				<name><![CDATA[창작]]></name>
+				<url>http://v.daum.net/ch/series</url>
+				<trackback_url>http://v.daum.net/tb/ch/series</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>02009</id>
+				<category_name><![CDATA[culture]]></category_name>
+				<name><![CDATA[문화]]></name>
+				<url>http://v.daum.net/ch/culture</url>
+				<trackback_url>http://v.daum.net/tb/ch/culture</trackback_url>
+			</category>
+				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    		</list>
+    </category>
+        <category depth="1">
+		<category_name><![CDATA[technology]]></category_name>
+		<name><![CDATA[IT과학]]></name>
+		<list>
+						    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    						<category depth="2">
+				<id>03001</id>
+				<category_name><![CDATA[it]]></category_name>
+				<name><![CDATA[IT]]></name>
+				<url>http://v.daum.net/ch/it</url>
+				<trackback_url>http://v.daum.net/tb/ch/it</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>03002</id>
+				<category_name><![CDATA[science]]></category_name>
+				<name><![CDATA[과학]]></name>
+				<url>http://v.daum.net/ch/science</url>
+				<trackback_url>http://v.daum.net/tb/ch/science</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>03003</id>
+				<category_name><![CDATA[game]]></category_name>
+				<name><![CDATA[게임]]></name>
+				<url>http://v.daum.net/ch/game</url>
+				<trackback_url>http://v.daum.net/tb/ch/game</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>03004</id>
+				<category_name><![CDATA[internet]]></category_name>
+				<name><![CDATA[인터넷]]></name>
+				<url>http://v.daum.net/ch/internet</url>
+				<trackback_url>http://v.daum.net/tb/ch/internet</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>03005</id>
+				<category_name><![CDATA[camera]]></category_name>
+				<name><![CDATA[카메라]]></name>
+				<url>http://v.daum.net/ch/camera</url>
+				<trackback_url>http://v.daum.net/tb/ch/camera</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>03006</id>
+				<category_name><![CDATA[mobile]]></category_name>
+				<name><![CDATA[모바일]]></name>
+				<url>http://v.daum.net/ch/mobile</url>
+				<trackback_url>http://v.daum.net/tb/ch/mobile</trackback_url>
+			</category>
+				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    		</list>
+    </category>
+        <category depth="1">
+		<category_name><![CDATA[sports]]></category_name>
+		<name><![CDATA[스포츠]]></name>
+		<list>
+						    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    						<category depth="2">
+				<id>04001</id>
+				<category_name><![CDATA[soccer]]></category_name>
+				<name><![CDATA[축구]]></name>
+				<url>http://v.daum.net/ch/soccer</url>
+				<trackback_url>http://v.daum.net/tb/ch/soccer</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04002</id>
+				<category_name><![CDATA[worldsoccer]]></category_name>
+				<name><![CDATA[해외축구]]></name>
+				<url>http://v.daum.net/ch/worldsoccer</url>
+				<trackback_url>http://v.daum.net/tb/ch/worldsoccer</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04003</id>
+				<category_name><![CDATA[baseball]]></category_name>
+				<name><![CDATA[야구]]></name>
+				<url>http://v.daum.net/ch/baseball</url>
+				<trackback_url>http://v.daum.net/tb/ch/baseball</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04004</id>
+				<category_name><![CDATA[worldbaseball]]></category_name>
+				<name><![CDATA[해외야구]]></name>
+				<url>http://v.daum.net/ch/worldbaseball</url>
+				<trackback_url>http://v.daum.net/tb/ch/worldbaseball</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04005</id>
+				<category_name><![CDATA[basketball]]></category_name>
+				<name><![CDATA[농구]]></name>
+				<url>http://v.daum.net/ch/basketball</url>
+				<trackback_url>http://v.daum.net/tb/ch/basketball</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04006</id>
+				<category_name><![CDATA[volleyball]]></category_name>
+				<name><![CDATA[배구]]></name>
+				<url>http://v.daum.net/ch/volleyball</url>
+				<trackback_url>http://v.daum.net/tb/ch/volleyball</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04007</id>
+				<category_name><![CDATA[golf]]></category_name>
+				<name><![CDATA[골프]]></name>
+				<url>http://v.daum.net/ch/golf</url>
+				<trackback_url>http://v.daum.net/tb/ch/golf</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>04008</id>
+				<category_name><![CDATA[sportsgeneral]]></category_name>
+				<name><![CDATA[스포츠일반]]></name>
+				<url>http://v.daum.net/ch/sportsgeneral</url>
+				<trackback_url>http://v.daum.net/tb/ch/sportsgeneral</trackback_url>
+			</category>
+				    				    				    				    				    				    				    				    				    				    				    				    		</list>
+    </category>
+        <category depth="1">
+		<category_name><![CDATA[economy]]></category_name>
+		<name><![CDATA[경제]]></name>
+		<list>
+						    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    						<category depth="2">
+				<id>05001</id>
+				<category_name><![CDATA[money]]></category_name>
+				<name><![CDATA[생활경제]]></name>
+				<url>http://v.daum.net/ch/money</url>
+				<trackback_url>http://v.daum.net/tb/ch/money</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>05002</id>
+				<category_name><![CDATA[stock]]></category_name>
+				<name><![CDATA[주식펀드]]></name>
+				<url>http://v.daum.net/ch/stock</url>
+				<trackback_url>http://v.daum.net/tb/ch/stock</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>05003</id>
+				<category_name><![CDATA[estate]]></category_name>
+				<name><![CDATA[부동산]]></name>
+				<url>http://v.daum.net/ch/estate</url>
+				<trackback_url>http://v.daum.net/tb/ch/estate</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>05004</id>
+				<category_name><![CDATA[car]]></category_name>
+				<name><![CDATA[자동차]]></name>
+				<url>http://v.daum.net/ch/car</url>
+				<trackback_url>http://v.daum.net/tb/ch/car</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>05005</id>
+				<category_name><![CDATA[business]]></category_name>
+				<name><![CDATA[비즈니스]]></name>
+				<url>http://v.daum.net/ch/business</url>
+				<trackback_url>http://v.daum.net/tb/ch/business</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>05006</id>
+				<category_name><![CDATA[job]]></category_name>
+				<name><![CDATA[취업직장]]></name>
+				<url>http://v.daum.net/ch/job</url>
+				<trackback_url>http://v.daum.net/tb/ch/job</trackback_url>
+			</category>
+				    				    				    				    				    				    		</list>
+    </category>
+        <category depth="1">
+		<category_name><![CDATA[current]]></category_name>
+		<name><![CDATA[시사]]></name>
+		<list>
+						    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    				    						<category depth="2">
+				<id>06001</id>
+				<category_name><![CDATA[society]]></category_name>
+				<name><![CDATA[사회]]></name>
+				<url>http://v.daum.net/ch/society</url>
+				<trackback_url>http://v.daum.net/tb/ch/society</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>06002</id>
+				<category_name><![CDATA[politics]]></category_name>
+				<name><![CDATA[정치]]></name>
+				<url>http://v.daum.net/ch/politics</url>
+				<trackback_url>http://v.daum.net/tb/ch/politics</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>06003</id>
+				<category_name><![CDATA[world]]></category_name>
+				<name><![CDATA[국제]]></name>
+				<url>http://v.daum.net/ch/world</url>
+				<trackback_url>http://v.daum.net/tb/ch/world</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>06004</id>
+				<category_name><![CDATA[media]]></category_name>
+				<name><![CDATA[미디어]]></name>
+				<url>http://v.daum.net/ch/media</url>
+				<trackback_url>http://v.daum.net/tb/ch/media</trackback_url>
+			</category>
+				    						<category depth="2">
+				<id>06005</id>
+				<category_name><![CDATA[education]]></category_name>
+				<name><![CDATA[교육]]></name>
+				<url>http://v.daum.net/ch/education</url>
+				<trackback_url>http://v.daum.net/tb/ch/education</trackback_url>
+			</category>
+				    		</list>
+    </category>
+    </entity>
+</result>
