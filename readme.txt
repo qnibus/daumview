@@ -5,7 +5,7 @@ Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Tags: Daum, 다음, Daumview, Daum View, 다음뷰, 다음 뷰, 열린편집자, 추천박스, 추천 박스
 Tested up to: 3.4 or higher
 Requires at least: 3.4
-Stable tag: 1.1
+Stable tag: 1.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -66,5 +66,11 @@ DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레�
 
 = 1.1 =
 * CSS의 잘못된 사용으로 인해 포스팅 공개설정이 안되는 버그 수정
+
+= 1.2 =
+* php버전에 따른 플러그인 활성화 방지 추가
+* DaumView 권고사항에 맞게 내부 코드 수정
+* category.xml 파일 추가
+* 송고시 문자열 인코딩 방식 변경
 
 == Upgrade Notice ==

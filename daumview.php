@@ -3,7 +3,7 @@
 Plugin Name: DaumView
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯 제공)
-Version: 1.1
+Version: 1.2
 Author: qnibus
 Author URI: http://qnibus.com
 Author Email: andy@qnibus.com
@@ -63,11 +63,14 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			if ( $this->options['daumview_widget_live_enable'] == 'Y' )
 				require_once( 'widgets/daumview_live_widget.php' );
 				
-			register_activation_hook( __FILE__, array(&$this, 'activatePlugin' ));
+			register_activation_hook( __FILE__, array(&$this, 'register_activate_daumview' ));
 		}
 		
-		function activatePlugin() {
-			
+		function register_activate_daumview() {
+			if ( version_compare( PHP_VERSION, '5.0.1', '<' ) ) { 
+                deactivate_plugins(basename(__FILE__)); // Deactivate ourself 
+                wp_die("죄송합니다만, 이 플러그인을 실행할 수 없습니다. (PHP버전 5.0.1 이상 업그레이드 필요)");// Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher. 
+        	}
 		}
 
 
@@ -146,20 +149,14 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 				$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( wp_get_shortlink( $post->ID ) ) );
 				if ( is_object( $xml ) ) {
 					$newsinfo = $xml->entity->news;
-					require_once dirname( __FILE__ ) . "/daumview_meta_info_box.php";
+					require_once dirname( __FILE__ ) . '/daumview_meta_info_box.php';
 				}
 			} else {
-				$xml = $this->get_xml_url( "http://api.v.daum.net/open/category.xml" );
-				if ( is_object($xml) ) {
-					if ( $xml->head->code == "200" ) {
-						$category = $xml->entity->category;						
-						$values = get_post_custom( $post->ID );
-						wp_nonce_field( 'daumview_meta_box_nonce', 'meta_box_nonce' );
-						require_once dirname( __FILE__ ) . "/daumview_meta_select_box.php";
-					};
-				} else {
-					echo '<div class="daumview-error">카테고리 정보를 수신할 수 없습니다.</div>';
-				}
+				$xml = simplexml_load_string( file_get_contents( dirname( __FILE__ ) . '/category.xml' ), null, LIBXML_NOCDATA );
+				$category = $xml->entity->category;
+				$values = get_post_custom( $post->ID );
+				wp_nonce_field( 'daumview_meta_box_nonce', 'meta_box_nonce' );
+				require_once dirname( __FILE__ ) . "/daumview_meta_select_box.php";
 			}
 		}
 		
@@ -181,11 +178,11 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			
 			if ( ! $this->is_post_daumview() ) {
 				$fields = array(
-		            'url' => urlencode( wp_get_shortlink( $post_id ) ),
-		            'title' => rawurlencode(stripslashes($_POST['post_title'])),
-		            'blog_name' => rawurlencode(stripslashes(get_bloginfo('name'))),
-		            'excerpt' => rawurlencode(stripslashes($_POST['content'])),
-		            'img_url' => urlencode('')
+		            'url' => rawurlencode( wp_get_shortlink( $post_id ) ),
+		            'title' => rawurlencode( stripslashes( strip_tags( $_POST['post_title'] ) ) ),
+		            'blog_name' => rawurlencode( stripslashes( strip_tags( get_bloginfo('name' ) ) ) ),
+		            'excerpt' => rawurlencode( stripslashes( strip_tags( $_POST['content'] ) ) ),
+		            'img_url' => rawurlencode( '' ),
 		        );
 				$xml = $this->post_xml_url( $_POST["daumview_category_url"], $fields );
 			}
@@ -276,8 +273,13 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			    curl_setopt( $ch, CURLOPT_REFERER, get_bloginfo('url') );
 			    $result = curl_exec( $ch );
 			    curl_close( $ch );
-			    return simplexml_load_string( $result );
+			    return simplexml_load_string( $result, null, LIBXML_NOCDATA );
 			} else {
+			
+				if ( ! function_exists( 'simplexml_load_string' ) ) {
+                	wp_die("Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher.");
+        		}
+        		
 				$fsockurl = parse_url( $url );
 				$header  = "GET " . $fsockurl['path'] . ( $fsockurl['query'] ? '?'.$fsockurl['query'] : '' ) . " HTTP/1.0\r\n";
 				$header .= "Host: " . $fsockurl['host'] . "\r\n";
@@ -319,7 +321,7 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 				$result = curl_exec( $ch );
 				curl_close( $ch );
-				return simplexml_load_string( $result );
+				return simplexml_load_string( $result, null, LIBXML_NOCDATA );
 			} else {
 				$fsockurl = parse_url( $url );	
 				$header  = "POST " . $fsockurl['path'] . " HTTP/1.1\r\n";
@@ -329,7 +331,7 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 				$header .= "Content-Length: " . strlen($fields_string) . "\r\n";
 				$header .= "Connection: close\r\n\r\n";
 				$header .= $fields_string;
-			
+				
 				if ( ! ($fsock = fsockopen( $fsockurl['host'], 80, $errno, $errstr, 5 ) ) )
 					fprintf( stderr, $errstr );
 			
