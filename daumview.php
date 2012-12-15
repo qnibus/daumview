@@ -3,8 +3,8 @@
 Plugin Name: DaumView
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯 제공)
-Version: 1.0
-Author: Jong-tae Ahn (안반장)
+Version: 1.1
+Author: qnibus
 Author URI: http://qnibus.com
 Author Email: andy@qnibus.com
 License: GPLv2 or later
@@ -182,9 +182,9 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			if ( ! $this->is_post_daumview() ) {
 				$fields = array(
 		            'url' => urlencode( wp_get_shortlink( $post_id ) ),
-		            'title' => urlencode(stripslashes($_POST['post_title'])),
-		            'blog_name' => urlencode(stripslashes(get_bloginfo('name'))),
-		            'excerpt' => urlencode(stripslashes($_POST['content'])),
+		            'title' => rawurlencode(stripslashes($_POST['post_title'])),
+		            'blog_name' => rawurlencode(stripslashes(get_bloginfo('name'))),
+		            'excerpt' => rawurlencode(stripslashes($_POST['content'])),
 		            'img_url' => urlencode('')
 		        );
 				$xml = $this->post_xml_url( $_POST["daumview_category_url"], $fields );
