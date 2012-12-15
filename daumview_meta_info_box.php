@@ -10,16 +10,16 @@
 				송고일시: <span id="post-status-display"><?php echo $newsinfo->reg_date; ?></span>
 			</div><!-- .misc-pub-section -->
 			
-			<div class="misc-pub-section" id="visibility">
+			<div class="misc-pub-section">
 				채널: <span id="post-visibility-display"><?php echo strtoupper($newsinfo->category_eng_name); ?></span>
 				<a href="http://v.daum.net/ch/<?php echo $newsinfo->category_eng_name; ?>" target="_blank" class="hide-if-no-js">View</a>
 			</div><!-- .misc-pub-section -->
 			
-			<div class="misc-pub-section" id="visibility">
+			<div class="misc-pub-section">
 				조회수: <span id="post-visibility-display"><?php echo strtoupper($newsinfo->read_count); ?>회</span>
 			</div><!-- .misc-pub-section -->
 			
-			<div class="misc-pub-section" id="visibility">
+			<div class="misc-pub-section">
 				추천수: <span id="post-visibility-display"><?php echo strtoupper($newsinfo->recommend_count); ?>회</span>
 			</div><!-- .misc-pub-section -->
 		</div>
