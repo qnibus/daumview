@@ -3,7 +3,7 @@
 Plugin Name: DaumView
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯 제공)
-Version: 1.2
+Version: 1.3
 Author: qnibus
 Author URI: http://qnibus.com
 Author Email: andy@qnibus.com
@@ -14,7 +14,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 if ( ! class_exists( 'QB_Daumview' ) ) {
 	class QB_Daumview {
 		public $name = 'qnibus_daumview';
-		public $version = '1.0.0';
+		public $version = '1.3';
 		public $plugin_url;
 		public $plugin_file;
 		public $options = array();
@@ -70,6 +70,10 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			if ( version_compare( PHP_VERSION, '5.0.1', '<' ) ) { 
                 deactivate_plugins(basename(__FILE__)); // Deactivate ourself 
                 wp_die("죄송합니다만, 이 플러그인을 실행할 수 없습니다. (PHP버전 5.0.1 이상 업그레이드 필요)");// Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher. 
+        	}
+        	if ( ! function_exists( 'simplexml_load_string' ) ) {
+        		deactivate_plugins(basename(__FILE__)); // Deactivate ourself 
+                wp_die("죄송합니다만, 이 플러그인을 실행할 수 없습니다. (simplexml_load_string 함수 실행 불가)");// Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher. 
         	}
 		}
 
@@ -144,7 +148,8 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 		function display_meta_box() {
 			global $post;
 			if ( ! $this->is_join_daumview( wp_get_shortlink( $post->ID ) ) ) {
-				echo '<div class="daumview-error"><a href="./options-general.php?page=daumview.php">블로그 주소가 올바르지 않습니다.<br />블로그 주소를 다시 설정해주세요.</a></div>';
+				$current_url = parse_url( wp_get_shortlink( $post->ID ) );
+				echo '<div class="daumview-error">존재하지 않는 블로그입니다. (' . wp_get_shortlink( $post->ID ) . ') <a href="./options-general.php?page=daumview.php">설정하기</a></div>';
 			} else if ( $this->is_post_daumview() ) {
 				$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( wp_get_shortlink( $post->ID ) ) );
 				if ( is_object( $xml ) ) {
@@ -205,6 +210,7 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 					'box' => '<embed src="http://api.v.daum.net/static/recombox1.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
 					'thinbox' => '<embed src="http://api.v.daum.net/static/recombox2.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
 					'button' => '<embed src="http://api.v.daum.net/static/recombox3.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
+					'smallbutton' => '<embed src="http://api.v.daum.net/static/recombox4.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
 				);
 			$daumview_content = '<table width="100%"><tr><td align="center">' . $daumview_box[empty($this->options['daumview_recombox_type']) ? 1 : $this->options['daumview_recombox_type']] . '</td></tr></table>';	
 			
@@ -253,11 +259,10 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 				if ( $xml->head->code == "200" ) {
 					return true;
 				}
+				return false;
 			}
-				
-			return false;
 		}
-		
+
 		
 		/**************************************************************************
          * GET 전송후 XML 반환
@@ -275,27 +280,25 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			    curl_close( $ch );
 			    return simplexml_load_string( $result, null, LIBXML_NOCDATA );
 			} else {
-			
-				if ( ! function_exists( 'simplexml_load_string' ) ) {
-                	wp_die("Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher.");
-        		}
-        		
-				$fsockurl = parse_url( $url );
-				$header  = "GET " . $fsockurl['path'] . ( $fsockurl['query'] ? '?'.$fsockurl['query'] : '' ) . " HTTP/1.0\r\n";
-				$header .= "Host: " . $fsockurl['host'] . "\r\n";
-				$header .= "Connection: close\r\n\r\n";
-				if ( ! ($fsock = fsockopen( $fsockurl['host'], 80, $errno, $errstr, 5 ) ) )
-					fprintf( stderr, $errstr );
-				
-				fputs( $fsock, $header );
-				
-				while ( $result = fgets( $fsock ) ){
-					if( ! trim( $result ) )
-						break;
+				$fsockurl = parse_url( $url );				
+				if ( ( $fsock = fsockopen( $fsockurl['host'], 80, $errno, $errstr, 5 ) ) ) {
+					$query  = "GET " . $fsockurl['path'] . ( $fsockurl['query'] ? '?'.$fsockurl['query'] : '' ) . " HTTP/1.0\r\n";
+					$query .= "Host: " . $fsockurl['host'] . "\r\n";
+					$query .= "Connection: close\r\n\r\n";
+					
+					$header = '';
+					$body   = '';
+					
+					fputs( $fsock, $query );
+					do {
+						$header .= fgets ( $fsock, 128 );
+					} while ( strpos ( $header, "\r\n\r\n" ) === false );
+
+					while ( ! feof ( $fsock ) ) {
+						$body .= fgets ( $fsock, 128 );
+					}
+					return simplexml_load_string( $body, null, LIBXML_NOCDATA );
 				}
-				
-				$result = stream_get_contents( $fsock );
-				return simplexml_load_string( $result, null, LIBXML_NOCDATA );
 			}
 		}
 		  		
@@ -324,26 +327,28 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 				return simplexml_load_string( $result, null, LIBXML_NOCDATA );
 			} else {
 				$fsockurl = parse_url( $url );	
-				$header  = "POST " . $fsockurl['path'] . " HTTP/1.1\r\n";
-				$header .= "Host: " . $fsockurl['host'] . "\r\n";
-				$header .= "User-Agent: " . $this->name . "\r\n";
-				$header .= "Content-Type: application/x-www-form-urlencoded;charset=UTF-8\r\n";
-				$header .= "Content-Length: " . strlen($fields_string) . "\r\n";
-				$header .= "Connection: close\r\n\r\n";
-				$header .= $fields_string;
-				
-				if ( ! ($fsock = fsockopen( $fsockurl['host'], 80, $errno, $errstr, 5 ) ) )
-					fprintf( stderr, $errstr );
+				if ( ($fsock = fsockopen( $fsockurl['host'], 80, $errno, $errstr, 5 ) ) ) {
+					$query  = "POST " . $fsockurl['path'] . " HTTP/1.1\r\n";
+					$query .= "Host: " . $fsockurl['host'] . "\r\n";
+					$query .= "User-Agent: " . $this->name . "\r\n";
+					$query .= "Content-Type: application/x-www-form-urlencoded;charset=UTF-8\r\n";
+					$query .= "Content-Length: " . strlen($fields_string) . "\r\n";
+					$query .= "Connection: close\r\n\r\n";
+					$query .= $fields_string;
+					
+					$header = '';
+					$body   = '';
+					
+					fputs( $fsock, $query );
+					do {
+						$header .= fgets ( $fsock, 128 );
+					} while ( strpos ( $header, "\r\n\r\n" ) === false );
 			
-				fputs( $fsock, $header );
-				
-				while ( $result = fgets( $fsock ) ){
-					if ( ! trim( $result ) )
-						break;
+					while ( ! feof ( $fsock ) ) {
+						$body .= fgets ( $fsock, 128 );
+					}
+					return simplexml_load_string( $body, null, LIBXML_NOCDATA );
 				}
-						
-				$result = stream_get_contents( $fsock );
-				return simplexml_load_string( $result, null, LIBXML_NOCDATA );
 			}
 		}
 	} //End Class

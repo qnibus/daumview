@@ -60,6 +60,10 @@
 				<label title="daumview-recombox-type-button">
 					<input name="daumview_recombox_type" value="button" <?php if ( $this->options['daumview_recombox_type'] == 'button' ) { ?>checked="checked"<?php } ?>type="radio" /> 버튼형<br />
 					<img src="<?php echo $this->plugin_url; ?>/images/daumview_button.png" />
+				</label><br />
+				<label title="daumview-recombox-type-smallbutton">
+					<input name="daumview_recombox_type" value="smallbutton" <?php if ( $this->options['daumview_recombox_type'] == 'smallbutton' ) { ?>checked="checked"<?php } ?>type="radio" /> 작은버튼형<br />
+					<img src="<?php echo $this->plugin_url; ?>/images/daumview_smallbutton.png" />
 				</label>
 				</fieldset>
 			</td>

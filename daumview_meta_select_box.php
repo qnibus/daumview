@@ -1,6 +1,6 @@
 <label for="send-daumview">
 <select name="daumview_category_url" style="width: 100%;">
-	<option value=''>다음뷰에 송고하지 않음</option>
+	<option value="">다음뷰에 송고하지 않음</option>
 <?php
 	foreach($category as $row) :
 ?>

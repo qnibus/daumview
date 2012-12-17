@@ -24,9 +24,10 @@
 			</div><!-- .misc-pub-section -->
 		</div>
 	</div>
-	
+<?php if ( isset( $this->daum_id ) ) { ?>
 	<div id="major-publishing-actions">
 		<a href="http://v.daum.net/my/<?php echo $this->daum_id; ?>" target="_blank" class="button button-large">MY view 보기</a>
 		<div class="clear"></div>
 	</div>
+<?php } ?>
 </div><!-- .submitbox -->
