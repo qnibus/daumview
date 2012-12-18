@@ -3,7 +3,7 @@
 Plugin Name: DaumView
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯 제공)
-Version: 1.3
+Version: 1.4
 Author: qnibus
 Author URI: http://qnibus.com
 Author Email: andy@qnibus.com
@@ -65,15 +65,18 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 				
 			register_activation_hook( __FILE__, array(&$this, 'register_activate_daumview' ));
 		}
-		
+
+
+		/**************************************************************************
+         * 플러그인 활성화
+         *
+         * @version 1.3
+         * @return NULL
+         **************************************************************************/
 		function register_activate_daumview() {
 			if ( version_compare( PHP_VERSION, '5.0.1', '<' ) ) { 
-                deactivate_plugins(basename(__FILE__)); // Deactivate ourself 
-                wp_die("죄송합니다만, 이 플러그인을 실행할 수 없습니다. (PHP버전 5.0.1 이상 업그레이드 필요)");// Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher. 
-        	}
-        	if ( ! function_exists( 'simplexml_load_string' ) ) {
-        		deactivate_plugins(basename(__FILE__)); // Deactivate ourself 
-                wp_die("죄송합니다만, 이 플러그인을 실행할 수 없습니다. (simplexml_load_string 함수 실행 불가)");// Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher. 
+                deactivate_plugins( basename( __FILE__ ) ); // Deactivate ourself 
+                wp_die( "Sorry, but you can't run this plugin, it requires PHP 5.0.1 or higher." );
         	}
 		}
 
@@ -146,17 +149,16 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
          * @return NULL
          **************************************************************************/
 		function display_meta_box() {
-			global $post;
-			if ( ! $this->is_join_daumview( wp_get_shortlink( $post->ID ) ) ) {
-				$current_url = parse_url( wp_get_shortlink( $post->ID ) );
-				echo '<div class="daumview-error">존재하지 않는 블로그입니다. (' . wp_get_shortlink( $post->ID ) . ') <a href="./options-general.php?page=daumview.php">설정하기</a></div>';
+			if ( ! $this->is_join_daumview( $this->get_shortlink_post_type() ) ) {
+				echo '<div class="daumview-error">존재하지 않는 블로그입니다. (' . $this->get_shortlink_post_type() . ') <a href="./options-general.php?page=daumview.php">설정하기</a></div>';
 			} else if ( $this->is_post_daumview() ) {
-				$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( wp_get_shortlink( $post->ID ) ) );
+				$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( $this->get_shortlink_post_type() ) );
 				if ( is_object( $xml ) ) {
 					$newsinfo = $xml->entity->news;
 					require_once dirname( __FILE__ ) . '/daumview_meta_info_box.php';
 				}
 			} else {
+				global $post;
 				$xml = simplexml_load_string( file_get_contents( dirname( __FILE__ ) . '/category.xml' ), null, LIBXML_NOCDATA );
 				$category = $xml->entity->category;
 				$values = get_post_custom( $post->ID );
@@ -183,7 +185,7 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			
 			if ( ! $this->is_post_daumview() ) {
 				$fields = array(
-		            'url' => rawurlencode( wp_get_shortlink( $post_id ) ),
+		            'url' => rawurlencode( $this->get_shortlink_post_type() ),
 		            'title' => rawurlencode( stripslashes( strip_tags( $_POST['post_title'] ) ) ),
 		            'blog_name' => rawurlencode( stripslashes( strip_tags( get_bloginfo('name' ) ) ) ),
 		            'excerpt' => rawurlencode( stripslashes( strip_tags( $_POST['content'] ) ) ),
@@ -203,14 +205,20 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 		function attach_into_content( $content ) {
 			if ( ! $this->is_post_daumview() )
 				return $content;
+						
+			$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( $this->get_shortlink_post_type() ) );
+			if ( is_object( $xml ) ) {
+				$query_url = 'nid=' . (string)$xml->entity->news->id;
+			} else {
+				$query_url = 'nurl=' . urlencode( $this->get_shortlink_post_type() );
+			}
 			
-			global $post;
 			$daumview_box = 
 				array(
-					'box' => '<embed src="http://api.v.daum.net/static/recombox1.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
-					'thinbox' => '<embed src="http://api.v.daum.net/static/recombox2.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
-					'button' => '<embed src="http://api.v.daum.net/static/recombox3.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
-					'smallbutton' => '<embed src="http://api.v.daum.net/static/recombox4.swf?nurl=' . wp_get_shortlink( $post->ID ) . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
+					'box' => '<embed src="http://api.v.daum.net/static/recombox1.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
+					'thinbox' => '<embed src="http://api.v.daum.net/static/recombox2.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
+					'button' => '<embed src="http://api.v.daum.net/static/recombox3.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
+					'smallbutton' => '<embed src="http://api.v.daum.net/static/recombox4.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
 				);
 			$daumview_content = '<table width="100%"><tr><td align="center">' . $daumview_box[empty($this->options['daumview_recombox_type']) ? 1 : $this->options['daumview_recombox_type']] . '</td></tr></table>';	
 			
@@ -223,6 +231,26 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 
 			return $content;
 		}
+		
+		
+		/**************************************************************************
+         * 포스트 Shortlink 생성
+         * 
+         * @version 1.4
+         * @return NULL
+         **************************************************************************/
+		function get_shortlink_post_type() {
+			global $post;	
+			if ( $post->post_type == 'post') {
+				return home_url( '?p=' . $post->ID );
+			} else if ( $post->post_type == 'page' ) {
+				return home_url( '?page_id=' . $post->ID );
+			} else if ( in_array( $post->post_type, get_post_types( array( '_builtin' => false ) ) ) ) {
+				return home_url( add_query_arg( array( 'post_type' => $post->post_type, 'p' => $post->ID ), '' ) );
+			} else {
+				return $this->options['daumview_blogurl'];
+			}
+		}
 
 		
 		/**************************************************************************
@@ -233,9 +261,8 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 		private function is_post_daumview() {			
 			if ( $this->daumview_nid != 0 )
 				return true;
-				
-			global $post;
-			$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( wp_get_shortlink( $post->ID ) ) );
+
+			$xml = $this->get_xml_url( "http://api.v.daum.net/open/news_info.xml?permalink=" . urlencode( $this->get_shortlink_post_type() ) );
 			if ( is_object( $xml ) ) {
 				if ( $xml->head->code == "200" ) {
 					$this->daumview_nid = $xml->entity->news->id;
