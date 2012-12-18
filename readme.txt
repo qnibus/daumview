@@ -3,13 +3,13 @@ Contributors: qnibus
 Donate link: http://qnibus.com
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Tags: Daum, 다음, Daumview, Daum View, 다음뷰, 다음 뷰, 열린편집자, 추천박스, 추천 박스
-Tested up to: 3.4 or higher
 Requires at least: 3.4
-Stable tag: 1.3
+Tested up to: 3.5
+Stable tag: 1.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구
+DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다.
 
 == Description ==
 
@@ -80,5 +80,8 @@ DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레�
 = 1.3 =
 * 추천박스 작은버튼형 추가
 * PHP 최소 사용버전 5.0.1이상으로 내림 (기존 5.1.0이상)
+
+= 1.4 =
+* 기능 안정화
 
 == Upgrade Notice ==
