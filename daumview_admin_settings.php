@@ -53,8 +53,8 @@
 					<input name="daumview_recombox_type" value="box" <?php if ( $this->options['daumview_recombox_type'] == 'box' ) { ?>checked="checked"<?php } ?>type="radio" /> 박스형<br />
 					<img src="<?php echo $this->plugin_url; ?>/images/daumview_box.png" />
 				</label><br />
-				<label title="daumview-recombox-type-thinbox">
-					<input name="daumview_recombox_type" value="thinbox" <?php if ( $this->options['daumview_recombox_type'] == 'thinbox' ) { ?>checked="checked"<?php } ?>type="radio" /> 작은 박스형<br />
+				<label title="daumview-recombox-type-smallbox">
+					<input name="daumview_recombox_type" value="smallbox" <?php if ( $this->options['daumview_recombox_type'] == 'smallbox' ) { ?>checked="checked"<?php } ?>type="radio" /> 작은 박스형<br />
 					<img src="<?php echo $this->plugin_url; ?>/images/daumview_thinbox.png" />
 				</label><br />
 				<label title="daumview-recombox-type-button">
@@ -90,6 +90,16 @@
 						<!-- <script src="http://widgetprovider.daum.net/view?url=http://widgetcfs1.daum.net/xml/2/widget/2009/05/29/10/49/4a1f3f2cd61a0.xml&width=166&height=191&widgetId=395&scrap=1" type="text/javascript"></script> -->
 					</label><br />
 				</fieldset>
+			</td>
+		</tr>
+		<tr>
+			<th scope="row">숏코드 사용법</th>
+			<td>
+				<code>[daumview type="box"][/daumview]</code> 박스형<br />
+				<code>[daumview type="smallbox"][/daumview]</code> 작은 박스형<br />
+				<code>[daumview type="button"][/daumview]</code> 버튼형<br />
+				<code>[daumview type="smallbutton"][/daumview]</code> 작은 버튼형<br />
+				<p class="description">컨텐츠 작성시 원하는 위치의 위의 코드를 넣어주시면 원하는 위치에 박스가 추가됩니다.</p>
 			</td>
 		</tr>
 <?php } ?>

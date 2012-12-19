@@ -5,7 +5,7 @@ Plugin URI: http://qnibus.com/blog/daumview-plugin/
 Tags: Daum, 다음, Daumview, Daum View, 다음뷰, 다음 뷰, 열린편집자, 추천박스, 추천 박스
 Requires at least: 3.4
 Tested up to: 3.5
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,6 +19,8 @@ DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레�
 * 포스트, 페이지, 커스텀 포스트 타입의 편집 모드에서 모두 지원
 * 송고 후, 포스트의 상단 및 하단에 추천박스(4가지 타입) 출력
 * 다음뷰의 총 4가지 위젯 제공
+* 송고시 원하는 제목으로 설정 가능
+* 숏코드 제공 (관리자내 안내 참고) [daumview type=box|smallbox|button|smallbutton][/daumview]
 
 == Installation ==
 
@@ -83,5 +85,11 @@ DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레�
 
 = 1.4 =
 * 기능 안정화
+
+= 1.5 =
+* 코드 최적화
+* 언인스톨시 옵션 제거 추가
+* 숏코드 기능 추가
+* 다음뷰 전송시 제목 변경 기능 추가
 
 == Upgrade Notice ==
