@@ -2,7 +2,7 @@
 /*
 Plugin Name: DaumView
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
-Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯 제공)
+Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯, 숏코드 제공)
 Version: 1.5
 Author: qnibus
 Author URI: http://qnibus.com
