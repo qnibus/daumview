@@ -109,14 +109,13 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			
 			if ( $xml = $this->is_post_daumview() ) {
 				$daumview_box = array(
-					'box' => '<embed src="http://api.v.daum.net/static/recombox1.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
-					'smallbox' => '<embed src="http://api.v.daum.net/static/recombox2.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
-					'button' => '<embed src="http://api.v.daum.net/static/recombox3.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
-					'smallbutton' => '<embed src="http://api.v.daum.net/static/recombox4.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
+					'box' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox1.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
+					'smallbox' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox2.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
+					'button' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox3.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
+					'smallbutton' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox4.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
 				);
-				$output = '<table width="100%"><tr><td align="center">' . $daumview_box[$type] . '</td></tr></table>';
 					
-				return $output;
+				return $daumview_box[$type];
 			}
 		}
 
@@ -268,10 +267,10 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			}
 			
 			$daumview_box = array(
-				'box' => '<embed src="http://api.v.daum.net/static/recombox1.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
-				'smallbox' => '<embed src="http://api.v.daum.net/static/recombox2.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
-				'button' => '<embed src="http://api.v.daum.net/static/recombox3.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
-				'smallbutton' => '<embed src="http://api.v.daum.net/static/recombox4.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
+				'box' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox1.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
+				'smallbox' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox2.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
+				'button' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox3.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
+				'smallbutton' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox4.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
 			);
 			$daumview_content = '<table width="100%"><tr><td align="center">' . $daumview_box[empty($this->options['daumview_recombox_type']) ? 1 : $this->options['daumview_recombox_type']] . '</td></tr></table>';
 			
