@@ -50,20 +50,20 @@
 			<td>
 				<fieldset><legend class="hidden">추천 박스 선택</legend>
 				<label title="daumview-recombox-type-box">
-					<input name="daumview_recombox_type" value="box" <?php if ( $this->options['daumview_recombox_type'] == 'box' ) { ?>checked="checked"<?php } ?>type="radio" /> 박스형<br />
+					<input name="daumview_recombox_type" value="box" <?php if ( $this->options['daumview_recombox_type'] == 'box' ) { ?>checked="checked"<?php } ?>type="radio" /> 박스타입<br />
 					<img src="<?php echo $this->plugin_url; ?>/images/daumview_box.png" />
 				</label><br />
 				<label title="daumview-recombox-type-smallbox">
-					<input name="daumview_recombox_type" value="smallbox" <?php if ( $this->options['daumview_recombox_type'] == 'smallbox' ) { ?>checked="checked"<?php } ?>type="radio" /> 작은 박스형<br />
-					<img src="<?php echo $this->plugin_url; ?>/images/daumview_thinbox.png" />
-				</label><br />
-				<label title="daumview-recombox-type-button">
-					<input name="daumview_recombox_type" value="button" <?php if ( $this->options['daumview_recombox_type'] == 'button' ) { ?>checked="checked"<?php } ?>type="radio" /> 버튼형<br />
+					<input name="daumview_recombox_type" value="smallbox" <?php if ( $this->options['daumview_recombox_type'] == 'button' ) { ?>checked="checked"<?php } ?>type="radio" /> 버튼타입<br />
 					<img src="<?php echo $this->plugin_url; ?>/images/daumview_button.png" />
 				</label><br />
+				<label title="daumview-recombox-type-button">
+					<input name="daumview_recombox_type" value="button" <?php if ( $this->options['daumview_recombox_type'] == 'normal' ) { ?>checked="checked"<?php } ?>type="radio" /> 일반타입<br />
+					<img src="<?php echo $this->plugin_url; ?>/images/daumview_normal.png" />
+				</label><br />
 				<label title="daumview-recombox-type-smallbutton">
-					<input name="daumview_recombox_type" value="smallbutton" <?php if ( $this->options['daumview_recombox_type'] == 'smallbutton' ) { ?>checked="checked"<?php } ?>type="radio" /> 작은버튼형<br />
-					<img src="<?php echo $this->plugin_url; ?>/images/daumview_smallbutton.png" />
+					<input name="daumview_recombox_type" value="smallbutton" <?php if ( $this->options['daumview_recombox_type'] == 'mini' ) { ?>checked="checked"<?php } ?>type="radio" /> 미니타입<br />
+					<img src="<?php echo $this->plugin_url; ?>/images/daumview_mini.png" />
 				</label>
 				</fieldset>
 			</td>
@@ -95,10 +95,10 @@
 		<tr>
 			<th scope="row">숏코드 사용법</th>
 			<td>
-				<code>[daumview type="box"][/daumview]</code> 박스형<br />
-				<code>[daumview type="smallbox"][/daumview]</code> 작은 박스형<br />
-				<code>[daumview type="button"][/daumview]</code> 버튼형<br />
-				<code>[daumview type="smallbutton"][/daumview]</code> 작은 버튼형<br />
+				<code>[daumview type="box"][/daumview]</code> 박스타입<br />
+				<code>[daumview type="button"][/daumview]</code> 버튼타입<br />
+				<code>[daumview type="normal"][/daumview]</code> 일반타입<br />
+				<code>[daumview type="mini"][/daumview]</code> 미니타입<br />
 				<p class="description">컨텐츠 작성시 원하는 위치의 위의 코드를 넣어주시면 원하는 위치에 박스가 추가됩니다.</p>
 			</td>
 		</tr>

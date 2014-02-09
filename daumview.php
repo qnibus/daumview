@@ -2,8 +2,8 @@
 /*
 Plugin Name: DaumView
 Plugin URI: http://qnibus.com/blog/daumview-plugin/
-Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯, 숏코드 제공)
-Version: 1.5
+Description: DaumView 플러그인은 다음뷰에서 제공하는 서비스를 워드프레스에서도 편리하게 사용할 수 있게 하기 위한 도구입니다. (추천박스, MY글 위젯, 추천LIVE 위젯, 랭킹 위젯, 구독 위젯 제공)
+Version: 1.6
 Author: qnibus
 Author URI: http://qnibus.com
 Author Email: andy@qnibus.com
@@ -32,7 +32,7 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 		
 		function initialize() {			
 			$this->plugin_url = substr( dirname( __FILE__ ), strlen($_SERVER['DOCUMENT_ROOT']) );
-			$this->plugin_file = basename(__FILE__);
+			$this->plugin_file = basename( __FILE__ );
 			$this->options = wp_parse_args( get_option( $this->name ), array(
 					'daumview_blogurl' => get_bloginfo( 'url' ),
 					'daumview_position_top' => '',
@@ -96,7 +96,7 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 		
 		/**************************************************************************
          * 숏코드
-         * [daumview type=<box|smallbox|button|smallbutton>][/daumview] 사용
+         * [daumview type=<box|button|normal|mini>][/daumview] 사용
          *
          * @since version 1.5
          * @return string
@@ -109,10 +109,10 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			
 			if ( $xml = $this->is_post_daumview() ) {
 				$daumview_box = array(
-					'box' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox1.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
-					'smallbox' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox2.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
-					'button' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox3.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
-					'smallbutton' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox4.swf?nid=' . $this->daumview_nid . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
+					'box' => '<IFRAME class="qb_not_iframe" height=90 src="http://api.v.daum.net/widget1?nid=' . $this->daumview_nid . '" frameBorder=no width="100%" allowTransparency scrolling=no></IFRAME>',
+					'button' => '<IFRAME class="qb_not_iframe" height=90 src="http://api.v.daum.net/widget2?nid=' . $this->daumview_nid . '" frameBorder=no width=76 allowTransparency scrolling=no></IFRAME>',
+					'normal' => '<IFRAME class="qb_not_iframe" height=44 src="http://api.v.daum.net/widget3?nid=' . $this->daumview_nid . '" frameBorder=no width=136 allowTransparency scrolling=no></IFRAME>',
+					'mini' => '<IFRAME class="qb_not_iframe" height=30 src="http://api.v.daum.net/widget4?nid=' . $this->daumview_nid . '" frameBorder=no width=112 allowTransparency scrolling=no></IFRAME>'
 				);
 					
 				return $daumview_box[$type];
@@ -267,10 +267,10 @@ if ( ! class_exists( 'QB_Daumview' ) ) {
 			}
 			
 			$daumview_box = array(
-				'box' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox1.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="80" type="application/x-shockwave-flash"></embed>',
-				'smallbox' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox2.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="400" height="58" type="application/x-shockwave-flash"></embed>',
-				'button' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox3.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="67" height="80" type="application/x-shockwave-flash"></embed>',
-				'smallbutton' => '<embed class="qb_not_embeded" src="http://api.v.daum.net/static/recombox4.swf?' . $query_url . '" quality="high" bgcolor="#ffffff" width="82" height="21" type="application/x-shockwave-flash"></embed>',
+				'box' => '<IFRAME class="qb_not_iframe" height=90 src="http://api.v.daum.net/widget1?' . $query_url . '" frameBorder=no width="100%" allowTransparency scrolling=no></IFRAME>',
+				'button' => '<IFRAME class="qb_not_iframe" height=90 src="http://api.v.daum.net/widget2' . $query_url . '" frameBorder=no width=76 allowTransparency scrolling=no></IFRAME>',
+				'normal' => '<IFRAME class="qb_not_iframe" height=44 src="http://api.v.daum.net/widget3?' . $query_url . '" frameBorder=no width=136 allowTransparency scrolling=no></IFRAME>',
+				'mini' => '<IFRAME class="qb_not_iframe" height=30 src="http://api.v.daum.net/widget4?' . $query_url . '" frameBorder=no width=112 allowTransparency scrolling=no></IFRAME>'
 			);
 			$daumview_content = '<table width="100%"><tr><td align="center">' . $daumview_box[empty($this->options['daumview_recombox_type']) ? 1 : $this->options['daumview_recombox_type']] . '</td></tr></table>';
 			
